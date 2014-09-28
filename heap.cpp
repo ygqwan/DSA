@@ -9,7 +9,7 @@ const int M = 10004;
 class Heap{
 private:
 	int n;	//元素个数
-	int bucket[M];
+	int *bucket;
 	void heapify(int cur);
 	
 	int left(int i){
@@ -28,7 +28,11 @@ private:
 	}
 public:
 	Heap():n(1){
+		bucket = new int(M);
 		memset(bucket, 0, sizeof(bucket));
+	}
+	~Heap(){
+		delete []bucket;
 	}
 	int top();
 	void push(int val);
