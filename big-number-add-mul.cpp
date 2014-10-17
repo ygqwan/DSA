@@ -44,6 +44,33 @@ void add(const char *a, const char *b, char *c){
 }
 
 
+//第一个版本写的比较复杂，改成版本二
+char *add2(const char *a, const char *b){
+	int i = strlen(a) - 1, j = strlen(b) - 1;
+	int k = max(i, j) + 1;
+	char *c = new char[max(i,j) + 3];
+	c[max(i,j)+2] = '\0';
+	int e = 0, tmp;
+	while(i >= 0 || j >= 0){
+		tmp = e;
+		if(i >= 0)
+			tmp += (a[i] - '0');
+		if(j >= 0)
+			tmp += (b[j] - '0');
+		c[max(i, j) + 1] = tmp % 10 + '0';
+		e = tmp / 10;
+		i--,j--;
+	}
+	//最前面进位了
+	if(e){
+		c[0] = e;
+		return c;
+	}else{
+		return c + 1;
+	}
+}
+
+
 /*
  123
 -182
